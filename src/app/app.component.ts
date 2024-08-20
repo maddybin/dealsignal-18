@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   title = '';
   profile: any;
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     chrome.storage.local.get(['siteData'], (result: any) => {
       localStorage.setItem('siteData', JSON.stringify(result))
     });
@@ -36,11 +36,8 @@ export class AppComponent implements OnInit {
       if (message.title == 'parsedData') {
         console.log(message.payload)
         this.profile = message.payload;
+        this.cdr.detectChanges();
       }
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    debugger
   }
 }

@@ -1,8 +1,17 @@
 <h1>Welcome</h1>
-{{profile | json}}
+
 <div *ngIf="profile">
-  <!-- <p>Name: {{profile?.basic_info[0]?.name}}</p>
-  <p>Headline: {{profile?.basic_info[0]?.headline}}</p>
-  <p>ImageUrl: {{profile?.basic_info[0]?.image_url}}</p>
-  <p>Url: {{profile?.linkedin_url}}</p> -->
+  <div class="profile-container">
+    <div class="profile-image">
+      <img [src]="profile?.basic_info[0]?.image_url">
+    </div>
+    <div class="profile-info">
+      <a href="profile?.linkedin_url">Name: {{profile?.basic_info[0]?.name}}</a>
+      <p>Headline: {{profile?.basic_info[0]?.headline}}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!profile">
+  <p>Loading...</p>
 </div>
