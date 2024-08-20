@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Angular 18 (POC)",
+  "version": "1.0.0",
+  "description": "A Chrome extension built with Angular and a content script",
+ "action": {
+    "default_icon": {
+      "128": "/ds-extension-logo-new.png"
+    },
+    "default_title": "DSChromeExtension(Sales)"
+  },
+  "icons": {
+    "128": "/ds-extension-logo-new.png"
+  },
+  "permissions": [
+    "tabs",
+    "cookies",
+    "declarativeContent",
+    "activeTab",
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.linkedin.com/*"
+  ],
+  "content_scripts": [
+    {
+     "matches": [
+        "*://*.linkedin.com/*"
+      ],
+      "js": ["jquery.min.js","content-script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": [ "*://*.linkedin.com/*"]
+    }
+  ]
+}

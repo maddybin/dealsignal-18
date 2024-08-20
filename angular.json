@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/dealsignal-18",
+            "outputPath": "dist/chrome-extension",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,6 +29,27 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "manifest.json",
+                "input": "src/",
+                "output": "/"
+              },
+              
+              {
+                "glob": "content-script.js",
+                "input": "src/",
+                "output": "/"
+              },
+              {
+                "glob": "background.js",
+                "input": "src/",
+                "output": "/"
+              },
+              {
+                "glob": "jquery.min.js",
+                "input": "src/",
+                "output": "/"
               }
             ],
             "styles": [
